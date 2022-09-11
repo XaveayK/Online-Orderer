@@ -10,11 +10,11 @@ import random
 
 def callMyselfToNotify(phoneNum):
     
-    auth_token = str(sys.argv[-11])
-    account_sid = str(sys.argv[-12])
-    twiPhoneNum = str(sys.argv[-13])
+    twilioInfoFile = open("twilioCred.txt", "r")
+    twilioLines=twilioInfoFile.readlines()
+    accountSID, authToken, twiPhoneNum = twilioLines[0], twilioLines[1], twilioLines[2]
     
-    client = Client(account_sid, auth_token)
+    client = Client(accountSID, authToken)
     
     call = client.calls.create(
         to = phoneNum,
